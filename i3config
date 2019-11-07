@@ -29,9 +29,12 @@ font pango:monospace 12
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# start a terminal/Personal Key Bindings
 bindsym $mod+t exec i3-sensible-terminal
-bindsym $mod+shift+bracketleft exec ~/Android-Studio/android-studio/bin/studio.sh 
+bindsym $mod+ctrl+t exec chromium
+bindsym $mod+shift+bracketleft exec ~/Android-Studio/android-studio/bin/studio.sh
+bindsym $mod+x exec i3lock -i ~/lock.png
+bindsym $mod+ctrl+w exec nautilus 
 
 
 # kill focused window
@@ -101,8 +104,8 @@ set $ws2 "2"
 set $ws3 ""
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
 set $ws7 "7"
+set $ws6 "✍"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -132,6 +135,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Chromium"] $ws3
+assign [class="google-keep-nativefier-d04d04"] $ws6
 assign [class="jetbrains-studio"] $ws2
 
 # reload the configuration file
@@ -168,15 +172,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #000000
+set $bg-color 	         #6699cc
 set $inactive-bg-color   #000000
 set $text-color          #ffffff
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $urgent-bg-color     #bc13fe
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           #222222          $text-color          #000000
+client.focused          $urgent-bg-color           #222222          $text-color          #000000
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #000000
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #000000
 client.urgent $urgent-bg-color $urgent-bg-color $text-color #000000
@@ -186,31 +190,40 @@ client.urgent $urgent-bg-color $urgent-bg-color $text-color #000000
 bar {
         status_command i3status
 	position top
- 	font pango: DejaVuSansCondensed , Icons 13
+ 	font pango: DejaVuSansCondensed , Icons 14
 	colors{
 		background #000000
 	    	separator #757575
 		#                  border             background         text
-		focused_workspace  $bg-color          #1fc700          $text-color
+		focused_workspace  #000000          $bg-color          $text-color
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 		urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
 	}
 }
 
-exec_always feh --bg-scale /home/diprivi/Downloads/arc.jpg
-exec_always sudo ip link wlp2s0 down
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always feh --bg-scale /home/diprivi/Desktop/wall01.png
 
 exec_always compton -b
-exec_always xrandr --output eDP-1 --brightness 0.5
 exec_always chromium
+exec_always sudo light -S 30
+exec_always google-keep
+exec --no-startup-id i3-msg workspace ✍
 
 bindsym $mod+Ctrl+Left resize shrink width 1 px or 1 ppt
 bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
 bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
 bindsym $mod+Ctrl+Right resize grow width 1 px or 1 ppt
  
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/pactl_volume.sh +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/pactl_volume.sh -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/pactl_volume.sh M # mute sound
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10
 
-bindsym XF86TouchpadToggle exec /home/diprivi/.config/i3/config/toggletouchpad.sh # toggle touchpad
+
+#bindsym XF86TouchpadToggle exec /home/diprivi/.config/i3/config/toggletouchpad.sh # toggle touchpad
+
+for_window [class="^.*"] border pixel 2
+gaps inner 10
+gaps outer 10 
