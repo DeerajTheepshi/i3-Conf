@@ -27,7 +27,7 @@ highlight = #30343e
 [colors]
 
 # http://dotfiles.org/~jbromley/.Xresources
-background=rgba(0,0,0,0.3)
+background=rgba(0,0,0,0.6)
 foreground=#ffffff
 cursor=#FF00FF
 

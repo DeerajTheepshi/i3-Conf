@@ -1,6 +1,10 @@
 # i3-Conf
+![Screenshot](screenshot.png)
 My personal i3 dot files. Well if you still haven't figured out why this exists: I will collapse my desktop one day or the other.
 This is to rollback from that bad day.
+
+## Polybar :
+- Thanks to [adi1090x](https://github.com/adi1090x/polybar-themes) for the polybar theme. Theme 11 from this collection is used with a few tweaks.
 
 ## Vim:
 - Contains powerline
@@ -24,5 +28,8 @@ This is to rollback from that bad day.
 
 ## Pactl-volume.sh :
 - This script is useful to change the sink of your audio.
+
+
+- Btw, your vs code theme is Winter is coming (Darkblue+No italics)
 
 Ig, that's basically enough for me to have a stable desktop. Hope this day never comes.
